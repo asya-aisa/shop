@@ -6,7 +6,7 @@ function Buttons({filteredClothes, allClothes, data, setClothes}) {
     const arrayChecked = []
 
     const addItem = (e) => {
-        // setCheck(check => !check);
+        // setCheck(!check);
         
         const value = e.target.value;
         arrayChecked.push(value);
