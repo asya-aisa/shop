@@ -1,45 +1,48 @@
-// import { useState } from "react";
 
 function Buttons({filteredClothes, allClothes, data, setClothes}) {
-    // const [check, setCheck] = useState(false);
+    const arrayChecked = [];
 
-    const arrayChecked = []
-
+    const isChecked = (arr, val) => {
+        return arr.some(function (arrVal) {
+            return val === arrVal;
+        });
+    }
+  
     const addItem = (e) => {
-        // setCheck(!check);
-        
         const value = e.target.value;
-        arrayChecked.push(value);
 
-        // console.log(check)
+        if(isChecked(arrayChecked, value)) {
+            let index = arrayChecked.indexOf(value)
 
+            arrayChecked.splice(index,1)
+            console.log(arrayChecked)
+        }
 
-        // if(check) {
-        //     arrayChecked.push(value);
-        // }
-        // else{arrayChecked.pop()}
-
+        else{arrayChecked.push(value);
         console.log(arrayChecked)
     }
+    }
 
-    const filterClothes = () => {
-        // e.preventDefault();
+
+    const filterClothes = (e) => {
+        e.preventDefault();
         const filterResult = [];
 
         console.log(arrayChecked)
-
-        // console.log(check)
 
         data.forEach(item => {
             let searchTerm = item.searchTerm;
                 if(arrayChecked.includes(searchTerm)) {
                     filterResult.push(item);
                     setClothes(filterResult);
-
                     console.log(arrayChecked)
                 }
         })
+        console.log(arrayChecked)
     }
+    
+    console.log(arrayChecked)
+
 
     return(<div>
     <div className="cont">
@@ -61,9 +64,9 @@ function Buttons({filteredClothes, allClothes, data, setClothes}) {
             <input onClick={addItem} type="checkbox" name="shoes" value='shoes' />
             </label>
 
-            
-            </form>
             <button onClick={filterClothes}>Show results</button>
+            </form>
+            
         </div>
     
     </div>)
