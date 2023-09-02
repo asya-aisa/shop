@@ -1,26 +1,21 @@
+import { useState } from "react";
 
 function Buttons({filteredClothes, allClothes, data, setClothes}) {
-    const arrayChecked = [];
+    const [arrayChecked, setArrayChecked] = useState([]);
 
     const isChecked = (arr, val) => {
         return arr.some(function (arrVal) {
             return val === arrVal;
-        });
+        })
     }
-  
+
     const addItem = (e) => {
         const value = e.target.value;
-
-        if(isChecked(arrayChecked, value)) {
-            let index = arrayChecked.indexOf(value)
-
-            arrayChecked.splice(index,1)
-            console.log(arrayChecked)
+        if (isChecked(arrayChecked, value)) {
+            setArrayChecked(arrayChecked.filter(item => item !== value))
+        } else {
+            setArrayChecked(arrayChecked => ([...arrayChecked, value]))
         }
-
-        else{arrayChecked.push(value);
-        console.log(arrayChecked)
-    }
     }
 
 
@@ -28,20 +23,19 @@ function Buttons({filteredClothes, allClothes, data, setClothes}) {
         e.preventDefault();
         const filterResult = [];
 
-        console.log(arrayChecked)
-
         data.forEach(item => {
             let searchTerm = item.searchTerm;
-                if(arrayChecked.includes(searchTerm)) {
-                    filterResult.push(item);
-                    setClothes(filterResult);
-                    console.log(arrayChecked)
-                }
+
+            if(arrayChecked.includes(searchTerm)) {
+                filterResult.push(item);
+                setClothes(filterResult);
+            }
+            else if(arrayChecked.length < 1) {
+                setClothes(data);
+            }
         })
-        console.log(arrayChecked)
     }
-    
-    console.log(arrayChecked)
+
 
 
     return(<div>
@@ -56,15 +50,27 @@ function Buttons({filteredClothes, allClothes, data, setClothes}) {
 
         <div className="cont">
             <form>
-            <label>DRESS
-            <input onClick={addItem} type="checkbox" name="dress" value='dress'/>
+            <label className="btn-filtr">Dresses
+            <input onClick={addItem} type="checkbox"  value='dress' />
             </label>
 
-            <label>SHOES
-            <input onClick={addItem} type="checkbox" name="shoes" value='shoes' />
+            <label className="btn-filtr">Shoes
+            <input onClick={addItem} type="checkbox"  value='shoes' />
             </label>
 
-            <button onClick={filterClothes}>Show results</button>
+            <label className="btn-filtr">Skirts
+            <input onClick={addItem} type="checkbox"  value='skirt' />
+            </label>
+
+            <label className="btn-filtr">Pants
+            <input onClick={addItem} type="checkbox"  value='pants' />
+            </label>
+
+            <label className="btn-filtr">Shirts
+            <input onClick={addItem} type="checkbox"  value='shirt' />
+            </label>
+
+            <button className="btn" onClick={filterClothes}>Show results</button>
             </form>
             
         </div>

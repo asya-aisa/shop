@@ -2,6 +2,7 @@ import { data } from './data';
 import Clothes from './Clothes';
 import Buttons from './Buttons'; 
 import { useState } from 'react';
+
 function First() {
 
     const [clothes, setClothes] = useState(data);

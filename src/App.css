@@ -49,29 +49,19 @@ body {
 }
 
 .change {
-
   background-color: black;
-
   color: white;
-
   padding: 10px;
-
   border: none;
-
   font-family: 'Encode Sans Semi Expanded', sans-serif;
-
 }
 
 h3, h4 {
-
   font-family: 'Encode Sans Semi Expanded', sans-serif;
-
 }
 
 button {
-
   margin: 10px;
-
 }
 
 nav {
@@ -85,5 +75,23 @@ nav {
   text-decoration: none;
   color: black;
   text-transform: uppercase;
+}
+.btn-filtr {
+  background-color: rgb(67, 221, 241);
+  color: white;
+  padding: 5px;
+  border: none;
+  font-family: 'Encode Sans Semi Expanded', sans-serif;
+  margin: 10px;
+}
+.btn {
+  background-color: transparent;
+  padding: 5px;
+  color: rgb(67, 221, 241);
+  border: 1px solid rgb(67, 221, 241);
+  font-size: 15px;
+}
+.btn:hover {
+  cursor: pointer;
 }
 
